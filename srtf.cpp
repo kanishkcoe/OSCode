@@ -87,12 +87,41 @@ void sortPrograms(Program *p, int size)
   calculateDetails(p, size);
 }
 
-void calculateDetails(Program * p, int size)
+void calculateDetails(Program * p, int n)
 {
   int counter = 0;
   int lastComplete = 0;
+  int min;
 
-  resolveTable(p, size);
+  while(counter < n)
+  {
+    min = 0;
+
+    for(int i = 0; i < n; i++)
+    {
+      if(p[i].status == 0 && p[min].burst > p[i].burst && p[i].arrival <= lastComplete)
+      {
+        min = i;
+      }
+    }
+
+    if(p[min].status == 1)
+    {
+      continue;
+    }
+    p[min].burst -= 1;
+    lastComplete++;
+
+    if(p[min].burst == 0)
+    {
+      p[min].status = 1;
+      p[min].completed = lastComplete;
+      counter++;
+    }
+
+  }
+
+  resolveTable(p, n);
 }
 
 void resolveTable(Program * p, int size)
