@@ -136,7 +136,7 @@ void resolveTable(Program * p, int size)
 void printTable(Program * p, int size)
 {
   sortPrograms(p, size);
-  cout << "\n\n\t\t\tROUND ROBIN SCHEDULINNG\n";
+  cout << "\n\n\t\tSHORTEST REMAINING TIME FIRST SCHEDULINNG\n";
 	cout <<"--------------------------------------------------------------------" << endl;
 	cout <<"--------------------------------------------------------------------" << endl;
 
